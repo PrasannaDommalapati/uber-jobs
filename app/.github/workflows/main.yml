@@ -23,4 +23,3 @@ jobs:
         uses: mohammed-atif/firebase-publish-react@v1.0
         with:
           firebase-token: ${{ secrets.FIREBASE_TOKEN }}
-          working-directory: app
