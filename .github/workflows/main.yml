@@ -28,7 +28,14 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build
-          path: app
+          path: app/build
+      - name: Archive Firebase config
+        uses: actions/upload-artifact@v2
+        with:
+          name: firebase
+          path: |
+            app/.firebaserc
+            app/firebase.json
 
   deploy:
     name: Deploy
