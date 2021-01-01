@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
     databaseURL: 'https://promote-api.firebaseio.com/'
-});
+}, 'employees');
 
 const database = admin.firestore();
 database.settings({ timestampsInSnapshots: true });
