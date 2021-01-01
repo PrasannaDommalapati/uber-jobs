@@ -51,7 +51,7 @@ jobs:
         with:
           name: firebase
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: wib-wub/deploy-firebase-functions@1.0.1
         with:
           args: deploy --only functions
         env:
