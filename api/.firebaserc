@@ -1,7 +1,5 @@
 {
   "projects": {
-    "default": "promote-api",
-    "promote-api": "promote-api",
-    "staging": "promote-api"
+    "default": "promote-api"
   }
 }
