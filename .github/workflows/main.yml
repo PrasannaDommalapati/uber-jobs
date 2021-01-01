@@ -1,9 +1,10 @@
-name: Firebase Deploy
+name: App Deploy
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 defaults:
   run:
