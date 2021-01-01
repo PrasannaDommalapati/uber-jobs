@@ -5,7 +5,7 @@ on:
     branches:
     - master
     paths:
-    - 'api/**'
+    - '../../api/**'
     - '.github/workflow/functions.yml'
   pull_request:
     branches:
