@@ -8,56 +8,23 @@ on:
 
 defaults:
   run:
-    working-directory: api/functions
+    working-directory: api
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Archive Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib
-          path: api/functions/lib
-      - name: Archive Firebase config
-        uses: actions/upload-artifact@v2
-        with:
-          name: firebase
-          path: |
-            api/.firebaserc
-            api/firebase.json
+      - uses: actions/checkout@v2
 
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: lib
-          path: lib
-      - name: Download Firebase Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: firebase
-      - name: yarn add firebase-tools
-        run: |
-          yarn global add firebase-tools
-          firebase deploy ${{ secrets.FIREBASE_TOKEN }} --only functions --non-interactive
-
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
+    - name: Install npm packages
+      run: |
+        cd functions
+        npm install
+    # Deploying the functions to firebase
+    - name:  Deploy to Firebase
+      uses: w9jds/firebase-action@master
+      with:
           args: deploy --only functions
-        env:
+      env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
