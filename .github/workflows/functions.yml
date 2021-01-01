@@ -53,7 +53,7 @@ jobs:
       - name: yarn add firebase-tools
         run: |
           yarn global add firebase-tools
-          firebase deploy ${{ secrets.firebase_token }} --only functions --non-interactive
+          firebase deploy ${{ secrets.FIREBASE_TOKEN }} --only functions --non-interactive
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
