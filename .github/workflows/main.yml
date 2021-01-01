@@ -3,14 +3,8 @@ name: App Deploy
 on:
   push:
     branches: [ master ]
-    paths:
-    - 'app/**'
-    - '.github/workflow/main.yml'
   pull_request:
     branches: [ master ]
-    paths:
-    - 'api/**'
-    - '.github/workflow/main.yml'
 
 defaults:
   run:
