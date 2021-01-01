@@ -2,12 +2,14 @@ name: Cloud Functions Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
     paths:
     - 'api/**'
     - '.github/workflow/functions.yml'
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
     paths:
     - 'api/**'
     - '.github/workflow/functions.yml'
