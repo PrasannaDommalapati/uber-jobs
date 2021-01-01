@@ -50,7 +50,14 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: firebase
+      - name: yarn add firebase-tools
+        run: |
+          yarn global add firebase-tools
+          firebase deploy ${{ secrets.firebase_token }} --only functions --non-interactive
+
       - name: Deploy to Firebase
-        uses: chrissank/deploy-firebase-functions@1.0.0
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
