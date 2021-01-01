@@ -3,11 +3,17 @@ name: Cloud Functions Deploy
 on:
   push:
     branches: [ master ]
+    paths:
+    - 'api/**'
+    - '.github/workflow/functions.yml'
   pull_request:
     branches: [ master ]
+    paths:
+    - 'api/**'
+    - '.github/workflow/functions.yml'
 
 jobs:
-  main:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
