@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: api
+    working-directory: api/functions
 
 jobs:
   build:
@@ -17,10 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install npm packages
-        run: |
-          cd functions
-          npm install
+      - name: Install Dependencies
+        run: npm install
       # Deploying the functions to firebase
       - name:  Deploy to Firebase
         uses: w9jds/firebase-action@master
