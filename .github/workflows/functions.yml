@@ -6,53 +6,20 @@ on:
   pull_request:
     branches: [ master ]
 
-defaults:
-  run:
-    working-directory: api/functions
-
 jobs:
-  build:
-    name: Build
+  main:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-      - name: Install Dependencies
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Download deps
+        working-directory: api/functions
         run: npm install
-      - name: Build
-        run: npm run build
-      - name: Archive Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: lib
-          path: api/functions/lib
-      - name: Archive Firebase config
-        uses: actions/upload-artifact@v2
-        with:
-          name: firebase
-          path: |
-            api/.firebaserc
-            api/firebase.json
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2.3.2
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: lib
-          path: lib
-      - name: Download Firebase Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: firebase
-      - name: Deploy to Firebase
-        uses: BIGG-Kaymo/deploy-firebase-functions@v1.0.1
-        with:
-          args: deploy --only functions
+      - name: Deploy
+        run: npx firebase-tools deploy --token "$FIREBASE_TOKEN"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
