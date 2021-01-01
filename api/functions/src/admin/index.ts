@@ -25,4 +25,3 @@ export const addSuperAdmin = functions.https.onCall(async (data, context) => {
         }
     }
 });
-
