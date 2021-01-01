@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 12
       - name: Download deps
-        working-directory: api/functions
+        working-directory: api
         run: npm install
       - name: Deploy
         run: npx firebase-tools deploy --token "$FIREBASE_TOKEN"
