@@ -69,3 +69,4 @@ package-lock.json
 
 # dotenv environment variables file
 .env
+service-account.json
