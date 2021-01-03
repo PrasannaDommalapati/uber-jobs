@@ -9,7 +9,8 @@ export const addSuperAdmin = functions.https.onCall(async (data, context) => {
 
     try {
         const user = await admin.auth().getUserByEmail(data.email);
-
+        
+        console.log('user', user)
         await admin.auth().setCustomUserClaims(user.uid, {
             superAdmin:true
         });
@@ -19,7 +20,7 @@ export const addSuperAdmin = functions.https.onCall(async (data, context) => {
         }
     } catch (error) {
         return {
-            message: `Unable to add Super Admin role to the user.`,
+            message: `Unable to add Super Admin role to the user '${data.email}'.`,
             error
         }
     }
