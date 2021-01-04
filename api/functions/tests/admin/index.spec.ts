@@ -6,11 +6,7 @@ import { addSuperAdmin } from '../../src/admin/index'
 describe('Admin', () => {
 
     let wrapped: any;
-    const testEnv = functions({
-        projectId: "promote-api",
-        databaseURL:"https://promote-api.firebaseio.com/",
-        storageBucket:"gs://promote-api.appspot.com"
-    }, '../../service-account.json');
+    const testEnv = functions();
 
     before(() => {
         wrapped = testEnv.wrap(addSuperAdmin);
@@ -18,12 +14,12 @@ describe('Admin', () => {
 
     it('should thow when the user has not been registerd', async () => {
 
-        let body = {
-                email: "dpchowdaryd@gmail.com"
+        let data = {
+            email: "dpchowdary@gmail.com"
         };
 
-        let result = await wrapped(body);
+        let result = await wrapped(data);
 
-        expect(result.message).to.be.equal(`Unable to add Super Admin role to the user '${body.email}'.`)
+        expect(result.message).to.be.equal(`Unable to add Super Admin role to the user '${data.email}'.`)
     });
 });

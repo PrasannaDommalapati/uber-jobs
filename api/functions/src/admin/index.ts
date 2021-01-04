@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from 'firebase-admin';
 
 admin.initializeApp({
-    credential: admin.credential.applicationDefault()
+    credential: admin.credential.cert(require('../../../functions/service-account.json')),
 });
 
 export const addSuperAdmin = functions.https.onCall(async (data, context) => {
@@ -10,7 +10,6 @@ export const addSuperAdmin = functions.https.onCall(async (data, context) => {
     try {
         const user = await admin.auth().getUserByEmail(data.email);
         
-        console.log('user', user)
         await admin.auth().setCustomUserClaims(user.uid, {
             superAdmin:true
         });
