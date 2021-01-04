@@ -4,7 +4,7 @@
     "build": "rimraf ./lib/**/* && tsc",
     "dev": "SET NODE_ENV=dev nodemon -r tsconfig-path/register src/app.ts",
     "lint": "tslint -p tsconfig.json src/**/*.ts -e tests/**/*.ts",
-    "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "mocha -r ts-node/register tests/**/*.spec.ts --exit",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
