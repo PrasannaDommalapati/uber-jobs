@@ -17,6 +17,7 @@ export const addSuperAdmin = functions.https.onCall(async (data, context) => {
         return {
             message: `Super Admin role has been added to the user '${data.email}'.`
         }
+        
     } catch (error) {
         return {
             message: `Unable to add Super Admin role to the user '${data.email}'.`,
