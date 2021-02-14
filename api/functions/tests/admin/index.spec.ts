@@ -6,7 +6,11 @@ import { addSuperAdmin } from '../../src/admin/index'
 describe('Admin', () => {
 
     let wrapped: any;
-    const testEnv = functions();
+    const testEnv = functions({
+        projectId: "promote-api",
+        databaseURL: "https://promote-api.firebaseio.com/",
+        storageBucket: "gs://promote-api.appspot.com"
+    }, '../../service-account.json');
 
     before(() => {
         wrapped = testEnv.wrap(addSuperAdmin);

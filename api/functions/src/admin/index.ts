@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from 'firebase-admin';
 
 admin.initializeApp({
-    credential: admin.credential.cert(require('../../../functions/service-account.json')),
+    credential: admin.credential.cert(require('../../../functions/service-account.json'))
 });
 
 export const addSuperAdmin = functions.https.onCall(async (data, context) => {
